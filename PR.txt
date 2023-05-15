@@ -1,0 +1,18 @@
+Exercicio 1
+
+1.1.
+Foi acrescentado o campo "_id" a todos os empregos científicos usando o script "add_id.py", sendo esta nova coleção guardada no ficheiro "emprego-cientifico_2.json"
+A coleção foi importada para a mongoDB usando o comando:
+    mongoimport --db scienceJobs --collection contracts --file emprego-cientifico_2.json --jsonArray
+
+1.2.
+
+1. 
+db.contracts.count()
+Resultado:
+17943
+
+2. 
+db.contracts.find({"InstituicaoEnsino": "Universidade do Minho"}).count()
+Resultado:
+17943
