@@ -9,10 +9,27 @@ A coleção foi importada para a mongoDB usando o comando:
 
 1. 
 db.contracts.count()
-Resultado:
-17943
+Resultado: 17943
 
 2. 
 db.contracts.find({"InstituicaoEnsino": "Universidade do Minho"}).count()
-Resultado:
-17943
+Resultado: 1399
+
+3.
+db.contracts.distinct("AreaCNAEF").sort()
+
+4.
+db.contracts.aggregate([
+  {
+    $group: {
+      _id: { $year: { $dateFromString: { dateString: "$DataInicioContrato", format: "%d/%m/%Y" } } },
+      total: { $sum: 1 }
+    }
+  },
+  { $sort: { _id: 1 } }
+])
+
+5.
+db.contracts.aggregate([
+  { $group: { _id: "$NomeInstituicao", total: { $sum: 1 } } }
+])
